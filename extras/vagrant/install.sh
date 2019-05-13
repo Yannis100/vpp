@@ -25,6 +25,4 @@ echo DISTRIB_DESCRIPTION: $DISTRIB_DESCRIPTION
 
 if [ $DISTRIB_ID == "Ubuntu" ]; then
     (cd ${VPP_DIR}/build-root/;sudo -E dpkg -i *.deb)
-elif [ $DISTRIB_ID == "CentOS" ]; then
-    (cd ${VPP_DIR}/build-root/;sudo -E rpm -Uvh *.rpm)
 fi

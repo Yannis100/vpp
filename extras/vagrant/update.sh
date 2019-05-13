@@ -34,14 +34,5 @@ if [ "$OS_ID" == "ubuntu" ]; then
     update-alternatives --install /bin/sh sh /bin/bash 100
 
     # Install useful but non-mandatory tools
-    apt-get install -y emacs x11-utils git-review gdb gdbserver xfce4-terminal iperf3
-elif [ "$OS_ID" == "centos" ]; then
-    if [ "$(echo $DISTRIB_RELEASE | cut -d'.' -f1)" == "7" ]; then
-        rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-        yum groupinstall "X Window system" -y
-        yum groupinstall xfce -y
-    fi
-    # Standard update + upgrade dance
-    yum check-update
-    yum update -y
+    apt-get install -y emacs x11-utils gdb gdbserver iperf3
 fi

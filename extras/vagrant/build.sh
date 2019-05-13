@@ -44,29 +44,10 @@ $SUDOCMD make wipe
 (cd build-root/;$SUDOCMD make distclean)
 rm -f build-root/.bootstrap.ok
 
-if [ $OS_ID == "centos" ]; then
-    echo rpm -V apr-devel
-    rpm -V apr-devel
-    if [ $? != 0 ]; then sudo -E yum reinstall -y apr-devel;fi
-    echo rpm -V ganglia-devel
-    rpm -V ganglia-devel
-    if [ $? != 0 ]; then sudo -E yum reinstall -y ganglia-devel;fi
-    echo rpm -V libconfuse-devel
-    rpm -V libconfuse-devel
-    if [ $? != 0 ]; then sudo -E yum reinstall -y libconfuse-devel;fi
-fi
-
 # Build and install packaging
 $SUDOCMD make bootstrap
 
 if [ "$OS_ID" == "ubuntu" ]; then
     $SUDOCMD make pkg-deb
-elif [ "$OS_ID" == "debian" ]; then
-    $SUDOCMD make pkg-deb
-elif [ "$OS_ID" == "centos" ]; then
-    (cd $VPP_DIR/vnet ;$SUDOCMD aclocal;$SUDOCMD automake -a)
-    $SUDOCMD make pkg-rpm
-elif [ "$OS_ID" == "opensuse" ]; then
-    $SUDOCMD make pkg-rpm
 fi
 
